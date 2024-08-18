@@ -21,7 +21,16 @@ class LevelController extends Controller
         // return'Delete data berhasil. Jumlah data yang dihapus: '.$row.' baris';
 
         //Menampilkan data
+        $breadcrumb = (object)[
+            'title' => 'Daftar Level',
+            'list' => ['Home', 'Level']
+        ];
+        $page = (object)[
+            'title' => 'Daftar level yang terdaftar dalam sistem'
+        ];
+        $activeMenu = 'level'; //Set menu yang sedang aktif
+        
         $data = DB::select('select * from m_level');
-        return view('level',['data'=>$data]);
-    }
+        return view('level',['data'=>$data, 'breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
+        }
 }

@@ -26,7 +26,16 @@ class KategoriController extends Controller
         // return 'Delete data berhasil, Jumlah data yang dihapus '.$data.' baris';
 
         // Read data
-        $data=DB::table('m_kategori')->get();
-        return view('kategori',['data'=>$data]);
-    }
+        $breadcrumb = (object)[
+            'title' => 'Daftar Kategori',
+            'list' => ['Home', 'Kategori']
+        ];
+        $page = (object)[
+            'title' => 'Daftar user yang terdaftar dalam sistem'
+        ];
+        $activeMenu = 'kategori'; //Set menu yang sedang aktif
+        
+        $data = DB::select('select * from m_kategori');
+        return view('kategori',['data'=>$data, 'breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
+        }
 }
